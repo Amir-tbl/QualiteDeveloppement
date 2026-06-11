@@ -23,4 +23,25 @@ public class VoitureTest {
         assertEquals(15000, voiture.getPrix());
     }
 
+    @Test
+    void testSetMarque() {
+        Voiture voiture = new Voiture();
+        voiture.setMarque("Peugeot");
+        assertEquals("Peugeot", voiture.getMarque());
+    }
+
+    @Test
+    void testSetPrix() {
+        Voiture voiture = new Voiture();
+        voiture.setPrix(20000);
+        assertEquals(20000, voiture.getPrix());
+    }
+
+    @Test
+    void testSetId() {
+        Voiture voiture = new Voiture();
+        voiture.setId(42);
+        assertEquals(42, voiture.getId());
+    }
+
 }
