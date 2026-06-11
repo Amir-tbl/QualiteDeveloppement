@@ -32,4 +32,22 @@ public class StatistiqueTests {
         assertEquals(17500, result.getPrixMoyen());
     }
 
+    @Test
+    void testPrixMoyenSansVoiture() {
+        when(statistiqueImpl.prixMoyen()).thenThrow(new ArithmeticException());
+        assertThrows(ArithmeticException.class, () -> {
+            statistiqueImpl.prixMoyen();
+        });
+    }
+
+    @Test
+    void testPrixMoyenUneVoiture() {
+        Echantillon echantillon = new Echantillon(1, 20000);
+        when(statistiqueImpl.prixMoyen()).thenReturn(echantillon);
+
+        Echantillon result = statistiqueImpl.prixMoyen();
+        assertEquals(1, result.getNombreDeVoitures());
+        assertEquals(20000, result.getPrixMoyen());
+    }
+
 }
