@@ -50,4 +50,13 @@ class WebTests {
                 .andExpect(jsonPath("$.prixMoyen").value(17500));
     }
 
+    @Test
+    void testGetStatistiquesSansVoiture() throws Exception {
+        when(statistiqueImpl.prixMoyen()).thenThrow(new ArithmeticException());
+
+        mockMvc.perform(get("/statistique"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
 }
