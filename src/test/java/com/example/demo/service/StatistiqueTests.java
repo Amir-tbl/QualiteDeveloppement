@@ -50,4 +50,23 @@ public class StatistiqueTests {
         assertEquals(20000, result.getPrixMoyen());
     }
 
+    @Test
+    void testStatistiqueImplSansMock() {
+        StatistiqueImpl stat = new StatistiqueImpl();
+        stat.ajouter(new Voiture("Renault", 10000));
+        stat.ajouter(new Voiture("Peugeot", 20000));
+
+        Echantillon result = stat.prixMoyen();
+        assertEquals(2, result.getNombreDeVoitures());
+        assertEquals(15000, result.getPrixMoyen());
+    }
+
+    @Test
+    void testStatistiqueImplSansVoiture() {
+        StatistiqueImpl stat = new StatistiqueImpl();
+        assertThrows(ArithmeticException.class, () -> {
+            stat.prixMoyen();
+        });
+    }
+
 }
