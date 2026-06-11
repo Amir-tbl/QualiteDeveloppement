@@ -38,4 +38,16 @@ class WebTests {
         verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));
     }
 
+    @Test
+    void testGetStatistiques() throws Exception {
+        Echantillon echantillon = new Echantillon(2, 17500);
+        when(statistiqueImpl.prixMoyen()).thenReturn(echantillon);
+
+        mockMvc.perform(get("/statistique"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombreDeVoitures").value(2))
+                .andExpect(jsonPath("$.prixMoyen").value(17500));
+    }
+
 }
