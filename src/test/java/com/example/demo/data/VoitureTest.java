@@ -44,4 +44,14 @@ public class VoitureTest {
         assertEquals(42, voiture.getId());
     }
 
+    @Test
+    void testToString() {
+        Voiture voiture = new Voiture("Toyota", 25000);
+        voiture.setId(1);
+        String result = voiture.toString();
+        assertTrue(result.contains("Toyota"));
+        assertTrue(result.contains("25000"));
+        assertTrue(result.contains("1"));
+    }
+
 }
